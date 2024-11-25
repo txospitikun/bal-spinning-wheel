@@ -1,0 +1,44 @@
+.hero-margin {
+    margin-top: 1800px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+.hero {
+  background-color: rgb(228, 228, 228);
+  border-radius: 20px 20px 0 0;
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-bottom: 20px;
+}
+
+.subtitle {
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+@media screen and (max-width: 800px) {
+  .h-card {
+    flex-direction: column !important;
+    max-width: fit-content;
+  }
+  .c-container {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-img {
+    justify-content: center;
+  }
+  .hero-margin {
+    margin-top: 3620px;
+}
+}
