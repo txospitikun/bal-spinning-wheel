@@ -5,7 +5,6 @@ import "./css/Layout.css";
 export default function Layout({ children }) {
   return (
     <>
-      <Navbar />
       <main className="main">
         {children}
       </main>

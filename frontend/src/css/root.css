@@ -1,5 +1,4 @@
 .hero-margin {
-    margin-top: 1800px;
 }
 
 .title {
@@ -25,6 +24,7 @@
   .h-card {
     flex-direction: column !important;
     max-width: fit-content;
+    min-width: 120%;
   }
   .c-container {
     flex-direction: column !important;
@@ -38,7 +38,5 @@
   .card-img {
     justify-content: center;
   }
-  .hero-margin {
-    margin-top: 3620px;
-}
+
 }

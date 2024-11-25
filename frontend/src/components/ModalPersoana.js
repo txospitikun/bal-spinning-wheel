@@ -11,7 +11,7 @@ import {
   CardMedia,
   TextField,
 } from "@mui/material";
-import Persoane from "../Persoane.json";
+import Music from "../Music.json";
 import "../css/ModalPersoana.css";
 import { Form } from "react-router-dom";
 
@@ -28,9 +28,8 @@ const style = {
 };
 
 function ModalPersoana(props) {
-  const { open, setOpen } = props; //aa
-  //   const Winner = Persoane[props.winner]
-  const Winner = Persoane[1];
+  const { open, setOpen } = props; 
+  //const Winner = Persoane[1];
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +45,7 @@ function ModalPersoana(props) {
       aria-describedby="modal-modal-description"
     >
       <Card sx={style}>
-        <CardHeader title={`Voteaza pentru ${Winner.name}`} />
+        <CardHeader title={`Voteaza pentru x`} />
         <Form onSubmit={onSubmit}>
           <CardContent>
             <Typography variant="body2" sx={{ color: "text.secondary" }}>

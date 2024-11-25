@@ -10,7 +10,6 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-import Persoane from "../Persoane.json";
 import "../css/Modal.css";
 
 const style = {
@@ -26,8 +25,7 @@ const style = {
 };
 
 function Modal(props) {
-  const { open, setOpen, winner } = props; //aa
-  //   const Winner = Persoane[1];
+  const { open, setOpen, winner } = props;
 
   return (
     <MuiModal

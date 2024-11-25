@@ -1,6 +1,6 @@
 import React from "react";
 import FortuneWheel from "../components/FortuneWheel";
-import Persoane from "../Persoane.json";
+import Music from "../Music.json";
 import "../css/roata.css";
 import { Typography, Box } from "@mui/material";
 
@@ -12,7 +12,7 @@ function Roata() {
       </Typography>
       <Box className="hero">
         <div>
-          <FortuneWheel data={Persoane} />
+          <FortuneWheel data={Music} />
         </div>
       </Box>
     </>

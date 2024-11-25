@@ -1,0 +1,78 @@
+[
+    {
+      "genre": "Rock",
+      "songs": [
+        { "title": "Rock Anthem 1" },
+        { "title": "Rock Anthem 2" },
+        { "title": "Rock Anthem 3" },
+        { "title": "Rock Anthem 4" },
+        { "title": "Rock Anthem 5" },
+        { "title": "Rock Anthem 6" },
+        { "title": "Rock Anthem 7" },
+        { "title": "Rock Anthem 8" },
+        { "title": "Rock Anthem 9" },
+        { "title": "Rock Anthem 10" }
+      ]
+    },
+    {
+      "genre": "Pop",
+      "songs": [
+        { "title": "Pop Hit 1" },
+        { "title": "Pop Hit 2" },
+        { "title": "Pop Hit 3" },
+        { "title": "Pop Hit 4" },
+        { "title": "Pop Hit 5" },
+        { "title": "Pop Hit 6" },
+        { "title": "Pop Hit 7" },
+        { "title": "Pop Hit 8" },
+        { "title": "Pop Hit 9" },
+        { "title": "Pop Hit 10" }
+      ]
+    },
+    {
+      "genre": "Jazz",
+      "songs": [
+        { "title": "Jazz Standard 1" },
+        { "title": "Jazz Standard 2" },
+        { "title": "Jazz Standard 3" },
+        { "title": "Jazz Standard 4" },
+        { "title": "Jazz Standard 5" },
+        { "title": "Jazz Standard 6" },
+        { "title": "Jazz Standard 7" },
+        { "title": "Jazz Standard 8" },
+        { "title": "Jazz Standard 9" },
+        { "title": "Jazz Standard 10" }
+      ]
+    },
+    {
+      "genre": "Hip Hop",
+      "songs": [
+        { "title": "Hip Hop Jam 1" },
+        { "title": "Hip Hop Jam 2" },
+        { "title": "Hip Hop Jam 3" },
+        { "title": "Hip Hop Jam 4" },
+        { "title": "Hip Hop Jam 5" },
+        { "title": "Hip Hop Jam 6" },
+        { "title": "Hip Hop Jam 7" },
+        { "title": "Hip Hop Jam 8" },
+        { "title": "Hip Hop Jam 9" },
+        { "title": "Hip Hop Jam 10" }
+      ]
+    },
+    {
+      "genre": "Electronic",
+      "songs": [
+        { "title": "Electronic Beat 1" },
+        { "title": "Electronic Beat 2" },
+        { "title": "Electronic Beat 3" },
+        { "title": "Electronic Beat 4" },
+        { "title": "Electronic Beat 5" },
+        { "title": "Electronic Beat 6" },
+        { "title": "Electronic Beat 7" },
+        { "title": "Electronic Beat 8" },
+        { "title": "Electronic Beat 9" },
+        { "title": "Electronic Beat 10" }
+      ]
+    }
+  ]
+  
