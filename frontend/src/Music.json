@@ -1,57 +1,57 @@
 [
     {
         "id": 0,
-        "name": "Ali",
+        "title": "Ali",
         "description": "Description of the card.1",
-        "votes": 120
+        "votes": 0
     },
     {
         "id": 1,
-        "name": "Beatr1iz",
+        "title": "Beatr1iz",
         "description": "Description of the card.2",
-        "votes": 40
+        "votes": 0
     },
     {
         "id": 2,
-        "name": "Char11les",
+        "title": "Char11les",
         "description": "Description of the card.3",
-        "votes": 60
+        "votes": 0
     },
     {
         "id": 3,
-        "name": "Diya1",
+        "title": "Diya1",
         "description": "Description of the card.4",
-        "votes": 80
+        "votes": 0
     },
     {
         "id": 4,
         "name": "Eric1",
         "description": "Description of the card.5",
-        "votes": 20
+        "votes": 0
     },
     {
         "id": 5,
         "name": "Fat1ima",
         "description": "Description of the card.6",
-        "votes": 60
+        "votes": 0
     },
     {
         "id": 6,
         "name": "Al1i",
         "description": "Description of the card.1",
-        "votes": 120
+        "votes": 0
     },
     {
         "id": 7,
         "name": "Beatri1z",
         "description": "Description of the card.2",
-        "votes": 40
+        "votes": 0
     },
     {
         "id": 8,
         "name": "Charle1s",
         "description": "Description of the card.3",
-        "votes": 60
+        "votes": 0
     },
     {
         "id": 9,

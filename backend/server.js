@@ -1,3 +1,4 @@
+const { randomUUID } = require("crypto");
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -7,11 +8,28 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server({
   cors: {
-    origin: "http://localhost:3000"
+    origin: ["http://localhost:3001", "http://localhost:3001/roata"]
   }
 });
 
 io.listen(4000);
+
+function getTopSongs(songs, limit = 8) {
+  const sortedSongs = [...songs].sort((a, b) => b.votes - a.votes);
+
+  const topSongs = sortedSongs.slice(0, limit);
+  const minVotes = topSongs[topSongs.length - 1]?.votes;
+
+  const tiedSongs = sortedSongs.filter(song => song.votes === minVotes);
+
+  const shuffledTiedSongs = tiedSongs.sort(() => Math.random() - 0.5);
+
+  let result = topSongs.filter(song => song.votes > minVotes);
+  const remainingSlots = limit - result.length;
+  result = result.concat(shuffledTiedSongs.slice(0, remainingSlots));
+
+  return result;
+}
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -20,12 +38,18 @@ main = async () =>
 
   const data = await fs.readFile('./musica.json', 'utf-8');
   const music_data = JSON.parse(data);
-  const genresAndVotesMap = new Map(music_data.map(item => [item.genre, 0]));
 
-  const songMap = new Map(
+  let genresAndVotesMap = new Map(music_data.map(item => [item.genre, 0]));
+  let songMap = new Map(
     music_data.map(item => [
-      item.genre, 
-      { votes: 0, songs: item.songs } 
+      item.genre,
+      {
+        songs: item.songs.map(song => ({
+          id: randomUUID(),
+          title: song.title,
+          votes: 0
+        }))
+      }
     ])
   );
 
@@ -34,16 +58,17 @@ main = async () =>
   let selectedGenre = null;
   let selectedSongs = null;
   let songs = [];
-  const votingDuration = 3000;
+  const votingDuration = 5 * 1000;
   console.log("test");
 
   io.on("connection", (socket) =>
   {
     console.log("A user connected:", socket.id);
-    if(songMap.get(selectedGenre))
+    if (songMap.get(selectedGenre))
       socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: Array.from(songMap.get(selectedGenre)) });
     else
       socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: [] });
+
 
     socket.on("voteGenre", (genre, callback) =>
     {
@@ -53,67 +78,91 @@ main = async () =>
       genresAndVotesMap.set(genre, currentVotes + 1);
       callback();
       io.sockets.emit("updateGenres", Array.from(genresAndVotesMap));
-
     });
 
-
-    socket.on("voteSong", (song, callback) =>
+    socket.on("voteSong", (songId, callback) =>
+    {
+      if (stage !== "songs") return;
+      const foundSong = selectedSongs.songs.find(x => x.id === songId);
+      if (foundSong)
       {
-        if (stage !== "songs") return;
-        if (!selectedSongs.has(song)) return;
-        const currentVotes = selectedSongs.votes;
-        genresAndVotesMap.set(genre, currentVotes + 1);
-
-        callback();
-        io.sockets.emit("updateGenres", Array.from(genresAndVotesMap));
-  
-      });
+        foundSong.votes += 1;
+      }
+      callback();
+      console.log(selectedSongs);
+      io.sockets.emit("updateSongs", selectedSongs.songs);
+    });
   });
 
+  async function runStages()
+  {
+    while (true)
+    {
+      songMap.forEach((value, genre) => {
+        value.songs.forEach(song => {
+          song.votes = 0;
+        });
+      });
 
-
-
-  async function runStages() {
-    while (true) {
       stage = "genres";
       io.sockets.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: [] });
       console.log("Stage 1: Voting genres started");
-      await sleep(votingDuration);
-  
-      if (genresAndVotesMap.size === 0) {
-        console.error("No genres to vote for! Exiting.");
-        break; 
+      for (let i = 0; i <= votingDuration / 1000; i++)
+      {
+        io.sockets.emit('updateTime', (votingDuration / 1000 - i));
+        await sleep(1000);
       }
-  
+
+      if (genresAndVotesMap.size === 0)
+      {
+        console.error("No genres to vote for! Exiting.");
+        break;
+      }
+
       selectedGenre = Array.from(genresAndVotesMap).reduce((max, entry) =>
         entry[1] > max[1] ? entry : max
       )[0];
       console.log(`Selected genre: ${selectedGenre}`);
-  
-      if (!songMap.get(selectedGenre)) {
+      genresAndVotesMap.forEach((_, genre) =>
+      {
+        genresAndVotesMap.set(genre, 0);
+      });
+      if (!songMap.get(selectedGenre))
+      {
         const randomKey = Array.from(songMap.keys())[Math.floor(Math.random() * songMap.size)];
         selectedSongs = songMap.get(randomKey);
-      } else {
+      } else
+      {
         selectedSongs = songMap.get(selectedGenre);
       }
-  
-      if (!selectedSongs || selectedSongs.length === 0) {
+      if (!selectedSongs || selectedSongs.length === 0)
+      {
         console.error("No songs available for the selected genre.");
         io.sockets.emit("stageUpdate", { stage: "songs", genre: Array.from(genresAndVotesMap), songs: [] });
-        break; 
+        break;
       }
-  
+
       stage = "songs";
-      console.log(selectedSongs)
       io.sockets.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: selectedSongs.songs });
       console.log(`Stage 2: Voting songs started with songs: ${selectedSongs}`);
-      await sleep(votingDuration);
-  
+      for (let i = 0; i <= votingDuration / 1000; i++)
+      {
+        io.sockets.emit('updateTime', (votingDuration / 1000 - i));
+        await sleep(1000);
+      }
+      const resultData = getTopSongs(selectedSongs.songs);
+      
       stage = "spin";
-      io.sockets.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: [] });
+      console.log(resultData);
+      io.sockets.emit("spinResult", resultData);
+      io.sockets.emit("stageUpdate", { stage: stage, genre: {}, songs: [] });
       console.log("Stage 3: Spin wheel started");
-      await sleep(votingDuration);
-  
+      for (let i = 0; i <= votingDuration / 1000; i++)
+      {
+        io.sockets.emit('updateTime', (votingDuration / 1000 - i));
+        await sleep(1000);
+      }
+
       console.log("Cycle completed. Restarting...");
     }
   }

@@ -10,8 +10,8 @@ body {
 
 .wheel-container {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 650px;
+  height: 650px;
 }
 
 .wheel {
@@ -29,44 +29,10 @@ body {
   left: 100%;
   width: 60px;
   height: 40px;
-  background: red;
+  background: rgb(0, 0, 0);
   transform: translateX(-50%);
   clip-path: polygon(0 49%, 100% 100%, 100% 0);
   z-index: 1;
-}
-
-.slice-text {
-  font-size: 6px;
-  font-weight: bold;
-  fill: white;
-  transform-origin: center;
-}
-
-.spin-button {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  background: gold;
-  border: none;
-  border-radius: 50%;
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.spin-button:hover {
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.spin-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
 }
 
 .result {
@@ -77,5 +43,4 @@ body {
 .section-wheel {
   display: flex;
   justify-content: center;
-  padding-top: 60px;
 }

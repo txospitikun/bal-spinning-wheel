@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FortuneWheel from "../components/FortuneWheel";
 import Music from "../Music.json";
 import "../css/roata.css";
 import { Typography, Box } from "@mui/material";
+import { socket } from './../socket.js'
 
-function Roata() {
+function Roata()
+{
+
+  const [spinResult, setSpinResult] = useState(null);
+  useEffect(() =>
+  {
+    socket.connect();
+
+    socket.on("spinResult", (value) =>
+    {
+      setSpinResult(value);
+    })
+  }, [])
+
+  useEffect(() =>
+  {
+  }, [spinResult])
   return (
     <>
-      <Typography variant="h3" className="title" gutterBottom>
-        Trage de Roata
-      </Typography>
-      <Box className="hero">
-        <div>
-          <FortuneWheel data={Music} />
-        </div>
-      </Box>
+      <div>
+        {spinResult && (
+          <FortuneWheel time={Date.now()} data={spinResult} />
+        )}
+      </div>
     </>
   );
 }

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/FortuneWheel.css";
 import Modal from "../components/Modal";
+import { Typography, Stack } from "@mui/material";
 
-const FortuneWheel = ({ data }) => {
+const FortuneWheel = ({ time, data }) => {
   const [currentRotation, setCurrentRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const totalVotes = data.reduce((sum, item) => sum + item.votes, 0);
+  const totalVotes = data.reduce((sum, item) => sum + item.votes + 1, 0);
 
-  // Calculate slices with proportional angles
   let angleStart = 0;
 
   const slices = data.map((item) => {
-    const sliceAngle = (item.votes / totalVotes) * 360;
+    const sliceAngle = ((item.votes + 1) / totalVotes) * 360;
     const startAngle = angleStart;
     angleStart += sliceAngle;
-    console.log(item.name)
+    console.log(item.title)
     console.log(angleStart)
     return { ...item, sliceAngle, startAngle };
   });
@@ -27,7 +27,6 @@ const FortuneWheel = ({ data }) => {
 
     setIsSpinning(true);
 
-    // Randomize spin with 5-7 full rotations plus a random offset
     const randomSpins = Math.floor(Math.random() * 3) + 5;
     const randomOffset = Math.random() * 360;
     const targetRotation = randomSpins * 360 + randomOffset;
@@ -36,10 +35,8 @@ const FortuneWheel = ({ data }) => {
 
     const newRotation = currentRotation + targetRotation;
 
-    // Calculate normalized angle in [0, 360)
     const normalizedAngle = ((newRotation % 360) + 360) % 360;
 
-    // Find the winner slice
     const selectedSlice = slices.find(
       ({ startAngle, sliceAngle }) =>
         normalizedAngle >= startAngle &&
@@ -48,14 +45,21 @@ const FortuneWheel = ({ data }) => {
 
     setCurrentRotation(newRotation);
     setTimeout(() => {
-      // let person = slices[selectedSlice.id + 2];
       setResult(selectedSlice);
       setIsSpinning(false);
       setOpenModal(true);
     }, 4500);
   };
 
+  useEffect(() => {
+    handleSpin();
+  }, [time])
+
   return (
+    <Stack sx={{justifyContent: "center", alignItems: "center"}}>
+    <Typography>
+      Result: {result.title}
+    </Typography>
     <section className="section-wheel">
       <div className="wheel-container">
         <div className="pointer"></div>
@@ -67,7 +71,7 @@ const FortuneWheel = ({ data }) => {
             transition: "transform 4.5s cubic-bezier(0.25, 1, 0.5, 1)",
           }}
         >
-          {slices.map(({ name, startAngle, sliceAngle }, index) => {
+          {slices.map(({ title, startAngle, sliceAngle }, index) => {
             // Midpoint of the slice (center of the text)
             const middleAngle = startAngle + sliceAngle / 2;
 
@@ -104,32 +108,23 @@ const FortuneWheel = ({ data }) => {
 
                 {/* Text */}
                 <text
-                  fill="white"
+                  fill="black"
                   fontSize="4"
                   fontWeight="bold"
-                  textAnchor="middle"
                   dominantBaseline="middle"
-                  x={textX}
+                  x={textX-30}
                   y={textY}
-                  transform={`rotate(${rotationAngle + 90} ${textX} ${textY})`}
+                  transform={`rotate(${rotationAngle + 270} ${textX} ${textY})`}
                 >
-                  {name}
+                  {title}
                 </text>
               </g>
             );
           })}
         </svg>
-
-        <button
-          className="spin-button"
-          onClick={handleSpin}
-          disabled={isSpinning}
-        >
-          Spin
-        </button>
-        {<Modal open={openModal} setOpen={setOpenModal} winner={result} />}
       </div>
     </section>
+    </Stack>
   );
 };
 

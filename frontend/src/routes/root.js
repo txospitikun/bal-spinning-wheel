@@ -16,6 +16,7 @@ function Root()
   const [currentStage, setCurrentStage] = useState('genres');
   const [genres, setGenres] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const submitVote = (e) =>
   {
@@ -53,6 +54,21 @@ function Root()
       setGenres(genre);
       setSongs(songs);
     })
+
+    socket.on('updateGenres', (genres) => 
+    {
+      setGenres(genres);
+    })
+
+    socket.on('updateSongs', (songs) => 
+      {
+        setSongs(songs);
+      })
+
+    socket.on('updateTime', (value) => 
+    {
+      setCurrentTime(value);
+    })
   }, [])
 
   useEffect(() => 
@@ -65,6 +81,9 @@ function Root()
     <section className="hero-margin">
       <Typography variant="h3" className="title" gutterBottom>
         Votează genre-ul tău
+      </Typography>
+      <Typography className="title">
+        {currentTime} seconds left
       </Typography>
       <Box className="hero">
         <Typography className="subtitle" variant="h5">
@@ -96,7 +115,7 @@ function Root()
             </Box>
             <CardContent className="card-text">
               <Typography level="title-md">{e.votes} voturi</Typography>
-              <Button variant="solid" disabled={hasVoted} onClick={() => { submiteSongVote(e.title) }}>
+              <Button variant="solid" disabled={hasVoted} onClick={() => { submiteSongVote(e.id) }}>
                 Voteaza
               </Button>
             </CardContent>
