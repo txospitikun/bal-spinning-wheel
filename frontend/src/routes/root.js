@@ -1,10 +1,10 @@
 import { Outlet, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import "../css/root.css";
+// import "../css/root.css";
 import { Box, Image, Stack, Typography, Card, CardContent } from "@mui/material";
 import { socket } from "./../socket.js";
 import { Button } from "@mui/joy";
-import "../css/Persoana.css";
+// import "../css/Persoana.css";
 const logo_bal = require('./../assets/bal_logo.png');
 
 function Root() {
@@ -59,12 +59,19 @@ function Root() {
   }, []);
 
   return (
-    <Stack sx={{ marginTop: '-90%' }}>
-      <Box width="100%" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <Box width="60%" marginTop="-20%" component="img" src={logo_bal}>
-        </Box>
-      </Box>
-      <Stack>
+    <Stack sx={{ background: 'red', height: '100dvh', maxHeight: '100dvh', width: '100%,', padding: '8px' }}>
+      {/* <Box width="100%" sx={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', height: '100%'}}>
+        <Box width="200px" height={'auto'} component="img" src={logo_bal} sx={{position: 'fixed', zIndex: '1', bottom: '0', left: '0'}} />
+      </Box> */}
+      <Stack
+        sx={{
+          // width: '100%',
+          // height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'blue'
+        }}
+      >
         {currentStage == 'genres' && (
           <Typography variant="h3" sx={{ fontFamily: "Anton" }} className="title" gutterBottom>
             Voteză genul dorit
@@ -84,7 +91,20 @@ function Root() {
           {currentTime} secunde rămase
         </Typography>
       </Stack>
-      <Box sx={{ position: 'absolute', marginTop: "65%" }} className="cards-container">
+      <Box
+        sx={{
+          // position: 'absolute',
+          marginTop: "0",
+          // top: '50%',
+          // left: '50%',
+          // transform: 'translate(-50%, -50%)',
+          background: 'pink',
+          width: '100%',
+          maxHeight: 'calc(100% - 32px)',
+          overflowY: 'auto',
+          paddingBottom: '20px'
+        }} 
+        className="cards-container">
         {currentStage === "genres" &&
           genres.map((e) => (
             <Box
@@ -95,11 +115,13 @@ function Root() {
                 flexDirection: 'column', // Stack items vertically
                 justifyContent: 'center', // Center items horizontally
                 alignItems: 'center', // Center items vertically
-                height: '100%', // Ensure the Box takes full height of its container
                 textAlign: 'center', // Center text alignment
+                width: {
+                  xs: '50%'
+                }
               }}
             >
-              <CardContent sx={{ width: '100%', color: "white" }}>
+              <CardContent sx={{ width: '100%', color: "white", height: 'max-content' }}>
                 <Typography className="title" sx={{ fontSize: "20px" }}>{e[0]}</Typography>
                 <Typography className="title">{e[1]} voturi</Typography>
                 <Button
@@ -125,6 +147,9 @@ function Root() {
                 <Button
                   variant="solid"
                   disabled={hasVoted}
+                  sx={{
+                    background: '#9c256a'
+                  }}
                   onClick={() => {
                     submiteSongVote(e.id);
                   }}

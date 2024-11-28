@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server({
   cors: {
-    origin: ["http://192.168.0.103:3001", "http://192.168.0.103:3001/roata", "http://localhost:3001", "http://localhost:3001/roata"]
+    origin: ["http://localhost:3001", "http://localhost:3001/roata"]
   }
 });
 

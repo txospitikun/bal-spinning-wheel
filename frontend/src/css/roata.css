@@ -153,13 +153,13 @@ body, html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
-  padding: 3rem;
+  /* gap: 5px; */
+  /* padding: 3rem; */
 }
 
 .h-card {
-  width: 100%;
-  max-width: 300px;
+  /* width: 100%; */
+  /* max-width: 300px; */
   background: #210525;
   border: 2px solid #fff;
   border-radius: 8px;
