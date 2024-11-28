@@ -54,76 +54,76 @@ const FortuneWheel = ({ time, data }) => {
   useEffect(() => {
     handleSpin();
   }, [time])
-
   return (
-    <Stack sx={{justifyContent: "center", alignItems: "center"}}>
-    <Typography>
-      Result: {result.title}
-    </Typography>
-    <section className="section-wheel">
-      <div className="wheel-container">
-        <div className="pointer"></div>
-        <svg
-          className="wheel"
-          viewBox="0 0 200 200"
-          style={{
-            transform: `rotate(${currentRotation}deg)`,
-            transition: "transform 4.5s cubic-bezier(0.25, 1, 0.5, 1)",
-          }}
-        >
-          {slices.map(({ title, startAngle, sliceAngle }, index) => {
-            // Midpoint of the slice (center of the text)
-            const middleAngle = startAngle + sliceAngle / 2;
+    <Stack sx={{ justifyContent: "center", alignItems: "center" }}>
+      {result && (
+        <Typography className="title" sx={{fontFamily: "Anton", marginBottom: "24px"}} variant="h2">
+          {result.title}
+        </Typography>
+      )}
+      <section className="section-wheel">
+        <div className="wheel-container">
+          <div className="pointer"></div>
+          <svg
+            className="wheel animated-border-blur"
+            viewBox="0 0 200 200"
+            style={{
+              transform: `rotate(${currentRotation}deg)`,
+              transition: "transform 4.5s cubic-bezier(0.25, 1, 0.5, 1)",
+            }}
+          >
+            {slices.map(({ title, startAngle, sliceAngle }, index) => {
+              const middleAngle = startAngle + sliceAngle / 2;
 
-            // Calculate position of the text on the circle (fixed radius of 85px)
-            const textRadius = 85;
-            const textX =
-              100 + textRadius * Math.cos((middleAngle * Math.PI) / 180);
-            const textY =
-              100 - textRadius * Math.sin((middleAngle * Math.PI) / 180);
+              const textRadius = 85;
+              const textX =
+                100 + textRadius * Math.cos((middleAngle * Math.PI) / 180);
+              const textY =
+                100 - textRadius * Math.sin((middleAngle * Math.PI) / 180);
 
-            // Calculate the angle for the line from the center of the wheel to the center of the text
-            const angle =
-              Math.atan2(textY - 100, textX - 100) * (180 / Math.PI); // Convert from radians to degrees
+              const angle =
+                Math.atan2(textY - 100, textX - 100) * (180 / Math.PI); // Convert from radians to degrees
 
-            // Text rotation angle should be the same as the calculated angle, to align it with the line
-            const rotationAngle = angle + 90; // Adjust to make text perpendicular to the line
+              // Text rotation angle should be the same as the calculated angle, to align it with the line
+              const rotationAngle = angle + 90; // Adjust to make text perpendicular to the line
 
-            // Path for slice (draw each slice)
-            const x1 = 100 + 100 * Math.cos((startAngle * Math.PI) / 180);
-            const y1 = 100 - 100 * Math.sin((startAngle * Math.PI) / 180);
-            const x2 =
-              100 + 100 * Math.cos(((startAngle + sliceAngle) * Math.PI) / 180);
-            const y2 =
-              100 - 100 * Math.sin(((startAngle + sliceAngle) * Math.PI) / 180);
-            const largeArc = sliceAngle > 180 ? 1 : 0;
+              // Path for slice (draw each slice)
+              const x1 = 100 + 100 * Math.cos((startAngle * Math.PI) / 180);
+              const y1 = 100 - 100 * Math.sin((startAngle * Math.PI) / 180);
+              const x2 =
+                100 + 100 * Math.cos(((startAngle + sliceAngle) * Math.PI) / 180);
+              const y2 =
+                100 - 100 * Math.sin(((startAngle + sliceAngle) * Math.PI) / 180);
+              const largeArc = sliceAngle > 180 ? 1 : 0;
 
-            return (
-              <g key={index}>
-                {/* Slice */}
-                <path
-                  d={`M 100 100 L ${x1} ${y1} A 100 100 0 ${largeArc} 0 ${x2} ${y2} Z`}
-                  fill={`hsl(${(index * 360) / slices.length}, 80%, 60%)`}
-                />
+              return (
+                <g key={index}>
+                  {/* Slice */}
+                  <path
+                    d={`M 100 100 L ${x1} ${y1} A 100 100 0 ${largeArc} 0 ${x2} ${y2} Z`}
+                    fill={index % 2 === 0 ? "#210525" : "#9c256a"}
+                  />
 
-                {/* Text */}
-                <text
-                  fill="black"
-                  fontSize="4"
-                  fontWeight="bold"
-                  dominantBaseline="middle"
-                  x={textX-30}
-                  y={textY}
-                  transform={`rotate(${rotationAngle + 270} ${textX} ${textY})`}
-                >
-                  {title}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
-      </div>
-    </section>
+
+                  {/* Text */}
+                  <text
+                    fill="white"
+                    fontSize="5"
+                    fontFamily="Anton"
+                    fontWeight="100"
+                    dominantBaseline="middle"
+                    x={textX - 30}
+                    y={textY}
+                    transform={`rotate(${rotationAngle + 270} ${textX} ${textY})`}
+                  >
+                    {title}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      </section>
     </Stack>
   );
 };

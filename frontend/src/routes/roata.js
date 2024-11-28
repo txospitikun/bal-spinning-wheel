@@ -21,15 +21,14 @@ function Roata()
 
   useEffect(() =>
   {
+    console.log(spinResult);
   }, [spinResult])
   return (
-    <>
-      <div>
-        {spinResult && (
-          <FortuneWheel time={Date.now()} data={spinResult} />
-        )}
-      </div>
-    </>
+    <Box>
+      {spinResult && (
+        <FortuneWheel time={Date.now()} data={spinResult} />
+      )}
+    </Box>
   );
 }
 
