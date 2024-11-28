@@ -59,7 +59,7 @@ function Root() {
   }, []);
 
   return (
-    <Stack sx={{ background: 'red', height: '100dvh', maxHeight: '100dvh', width: '100%,', padding: '8px' }}>
+    <Stack sx={{ background: 'unset', height: '100dvh', maxHeight: '100dvh', width: '100%,', padding: '8px' }}>
       {/* <Box width="100%" sx={{display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', height: '100%'}}>
         <Box width="200px" height={'auto'} component="img" src={logo_bal} sx={{position: 'fixed', zIndex: '1', bottom: '0', left: '0'}} />
       </Box> */}
@@ -69,7 +69,8 @@ function Root() {
           // height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'blue'
+          // background: 'blue',
+          // height: 'max-content'
         }}
       >
         {currentStage == 'genres' && (
@@ -98,11 +99,10 @@ function Root() {
           // top: '50%',
           // left: '50%',
           // transform: 'translate(-50%, -50%)',
-          background: 'pink',
+          // background: 'pink',
           width: '100%',
-          maxHeight: 'calc(100% - 32px)',
+          maxHeight: 'calc(100% - 346px)',
           overflowY: 'auto',
-          paddingBottom: '20px'
         }} 
         className="cards-container">
         {currentStage === "genres" &&
@@ -140,7 +140,7 @@ function Root() {
 
         {currentStage === "songs" &&
           songs.map((e) => (
-            <Box variant="soft" className="h-card retro-card">
+            <Box variant="soft" className="h-card retro-card" sx={{width: '50%'}}>
               <CardContent>
                 <Typography className="song-title">{e.title}</Typography>
                 <Typography className="votes-text">{e.votes} voturi</Typography>

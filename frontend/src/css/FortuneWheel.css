@@ -10,8 +10,11 @@ body {
 
 .wheel-container {
   position: relative;
-  width: 650px;
-  height: 650px;
+  /* width: 90%;
+  aspect-ratio: 1 / 1;
+  height: auto; */
+  width: clamp(30%, 560px, 60%);
+  height: auto;
 }
 
 .gradient-border {
@@ -115,4 +118,6 @@ body {
 .section-wheel {
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }

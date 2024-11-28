@@ -24,7 +24,14 @@ function Roata()
     console.log(spinResult);
   }, [spinResult])
   return (
-    <Box>
+    <Box
+      sx={{
+        height: '100dvh',
+        width: '100%',
+        // background: 'red',
+
+      }}
+    >
       {spinResult && (
         <FortuneWheel time={Date.now()} data={spinResult} />
       )}
