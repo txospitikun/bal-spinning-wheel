@@ -1,78 +1,138 @@
 [
-    {
-      "genre": "Rock",
-      "songs": [
-        { "title": "Rock Anthem 1" },
-        { "title": "Rock Anthem 2" },
-        { "title": "Rock Anthem 3" },
-        { "title": "Rock Anthem 4" },
-        { "title": "Rock Anthem 5" },
-        { "title": "Rock Anthem 6" },
-        { "title": "Rock Anthem 7" },
-        { "title": "Rock Anthem 8" },
-        { "title": "Rock Anthem 9" },
-        { "title": "Rock Anthem 10" }
-      ]
-    },
-    {
-      "genre": "Pop",
-      "songs": [
-        { "title": "Pop Hit 1" },
-        { "title": "Pop Hit 2" },
-        { "title": "Pop Hit 3" },
-        { "title": "Pop Hit 4" },
-        { "title": "Pop Hit 5" },
-        { "title": "Pop Hit 6" },
-        { "title": "Pop Hit 7" },
-        { "title": "Pop Hit 8" },
-        { "title": "Pop Hit 9" },
-        { "title": "Pop Hit 10" }
-      ]
-    },
-    {
-      "genre": "Jazz",
-      "songs": [
-        { "title": "Jazz Standard 1" },
-        { "title": "Jazz Standard 2" },
-        { "title": "Jazz Standard 3" },
-        { "title": "Jazz Standard 4" },
-        { "title": "Jazz Standard 5" },
-        { "title": "Jazz Standard 6" },
-        { "title": "Jazz Standard 7" },
-        { "title": "Jazz Standard 8" },
-        { "title": "Jazz Standard 9" },
-        { "title": "Jazz Standard 10" }
-      ]
-    },
-    {
-      "genre": "Hip Hop",
-      "songs": [
-        { "title": "Hip Hop Jam 1" },
-        { "title": "Hip Hop Jam 2" },
-        { "title": "Hip Hop Jam 3" },
-        { "title": "Hip Hop Jam 4" },
-        { "title": "Hip Hop Jam 5" },
-        { "title": "Hip Hop Jam 6" },
-        { "title": "Hip Hop Jam 7" },
-        { "title": "Hip Hop Jam 8" },
-        { "title": "Hip Hop Jam 9" },
-        { "title": "Hip Hop Jam 10" }
-      ]
-    },
-    {
-      "genre": "Electronic",
-      "songs": [
-        { "title": "Electronic Beat 1" },
-        { "title": "Electronic Beat 2" },
-        { "title": "Electronic Beat 3" },
-        { "title": "Electronic Beat 4" },
-        { "title": "Electronic Beat 5" },
-        { "title": "Electronic Beat 6" },
-        { "title": "Electronic Beat 7" },
-        { "title": "Electronic Beat 8" },
-        { "title": "Electronic Beat 9" },
-        { "title": "Electronic Beat 10" }
-      ]
-    }
-  ]
-  
+  {
+    "genre": "Rock",
+    "songs": [
+      { "title": "Vița de Vie - Basul și cu toba mare" },
+      { "title": "Alternosfera - Ploile nu vin" },
+      { "title": "Vama - Perfect fără tine" },
+      { "title": "Iris - Strada ta" },
+      { "title": "Phoenix - Nunta" },
+      { "title": "Cargo - Doi pași" },
+      { "title": "Zdob și Zdub - DJ Vasile" },
+      { "title": "Șuie Paparude - Ajutor" },
+      { "title": "Vunk - Pleacă" },
+      { "title": "Coma - Coboară-mă-n rai" },
+      { "title": "The Killers - Mr. Brightside" },
+      { "title": "Kings of Leon - Sex on Fire" },
+      { "title": "Arctic Monkeys - Do I Wanna Know?" },
+      { "title": "Franz Ferdinand - Take Me Out" },
+      { "title": "Muse - Supermassive Black Hole" },
+      { "title": "Foo Fighters - Everlong" },
+      { "title": "AC/DC - Thunderstruck" },
+      { "title": "Nirvana - Smells Like Teen Spirit" },
+      { "title": "Green Day - American Idiot" },
+      { "title": "Red Hot Chili Peppers - Can’t Stop" },
+      { "title": "Linkin Park - Somewhere I Belong" },
+      { "title": "Guns N’ Roses - Welcome to the Jungle" }
+    ]
+  },
+  {
+    "genre": "Pop",
+    "songs": [
+      { "title": "Inna - Hot" },
+      { "title": "Smiley - Acasă" },
+      { "title": "Delia - Pe aripi de vânt" },
+      { "title": "Carla’s Dreams - Sub pielea mea" },
+      { "title": "Alexandra Stan - Mr. Saxobeat" },
+      { "title": "Antonia - Morena" },
+      { "title": "Minelli - Rampampam" },
+      { "title": "Lidia Buble - Le-am spus și fetelor" },
+      { "title": "Akcent - Kylie" },
+      { "title": "Edward Maya - Stereo Love" },
+      { "title": "Fly Project - Toca Toca" },
+      { "title": "Morandi - Angels" },
+      { "title": "Dua Lipa - Don’t Start Now" },
+      { "title": "Rihanna - Don’t Stop the Music" },
+      { "title": "Katy Perry - Firework" },
+      { "title": "Lady Gaga - Poker Face" },
+      { "title": "Britney Spears - Gimme More" },
+      { "title": "Beyoncé - Single Ladies" },
+      { "title": "Shakira - Hips Don’t Lie" },
+      { "title": "Olivia Rodrigo - Good 4 U" },
+      { "title": "Ed Sheeran - Shape of You" },
+      { "title": "The Weeknd - Blinding Lights" },
+      { "title": "Taylor Swift - Shake It Off" }
+    ]
+  },
+  {
+    "genre": "Jazz",
+    "songs": [
+      { "title": "Johnny Răducanu - Autumn Leaves" },
+      { "title": "Aura Urziceanu - Tristeți provinciale" },
+      { "title": "Harry Tavitian - Balada" },
+      { "title": "Mircea Tiberian - On the Real Side" },
+      { "title": "Anca Parghel - Everything Must Change" },
+      { "title": "Nicolas Simion - Transylvanian Dance" },
+      { "title": "Marius Popp - Song for Tania" },
+      { "title": "Teodora Enache - Amurg de toamnă" },
+      { "title": "Liviu Butoi - Inside Stories" },
+      { "title": "Eugen Gondi - Solaris" },
+      { "title": "Miles Davis - So What" },
+      { "title": "Louis Armstrong - What a Wonderful World" },
+      { "title": "Ella Fitzgerald - Summertime" },
+      { "title": "Duke Ellington - Take the A Train" },
+      { "title": "John Coltrane - Giant Steps" },
+      { "title": "Billie Holiday - Strange Fruit" },
+      { "title": "Frank Sinatra - Fly Me to the Moon" },
+      { "title": "Dave Brubeck - Take Five" },
+      { "title": "Charlie Parker - Ornithology" },
+      { "title": "Chet Baker - My Funny Valentine" },
+      { "title": "Nina Simone - Feeling Good" },
+      { "title": "Norah Jones - Don’t Know Why" }
+    ]
+  },
+  {
+    "genre": "Hip Hop",
+    "songs": [
+      { "title": "B.U.G. Mafia - Străzile" },
+      { "title": "Paraziții - Slalom printre cretini" },
+      { "title": "Subcarpați - Balada românului" },
+      { "title": "Grasu XXL - Turbofin" },
+      { "title": "Killa Fonic - Bambolina" },
+      { "title": "Guess Who - Locul potrivit" },
+      { "title": "Macanache - Șefu" },
+      { "title": "Puya - Undeva-n Balkani" },
+      { "title": "Spike - Salcâmii" },
+      { "title": "Deliric - Ambrozie" },
+      { "title": "Drake - God's Plan" },
+      { "title": "Travis Scott - Goosebumps" },
+      { "title": "Post Malone - Circles" },
+      { "title": "Kanye West - Gold Digger" },
+      { "title": "Eminem - Without Me" },
+      { "title": "50 Cent - In Da Club" },
+      { "title": "Cardi B - WAP" },
+      { "title": "Kendrick Lamar - DNA" },
+      { "title": "Jay-Z - Empire State of Mind" },
+      { "title": "Nicki Minaj - Starships" },
+      { "title": "Megan Thee Stallion - Savage" },
+      { "title": "Lil Nas X - Industry Baby" }
+    ]
+  },
+  {
+    "genre": "Electronic",
+    "songs": [
+      { "title": "Inna - Sun Is Up" },
+      { "title": "Alexandra Stan - Get Back (ASAP)" },
+      { "title": "DJ Project - Privirea ta" },
+      { "title": "Edward Maya - This Is My Life" },
+      { "title": "Adrian Eftimie - No Side Effect" },
+      { "title": "Sasha Lopez - All My People" },
+      { "title": "Vanotek - Back to Me" },
+      { "title": "Fly Project - Musica" },
+      { "title": "Morandi - Save Me" },
+      { "title": "Akcent - My Passion" },
+      { "title": "David Guetta - Titanium" },
+      { "title": "Calvin Harris - Summer" },
+      { "title": "Swedish House Mafia - Greyhound" },
+      { "title": "Martin Garrix - Animals" },
+      { "title": "Tiësto - The Business" },
+      { "title": "Deadmau5 - Ghosts 'n' Stuff" },
+      { "title": "Avicii - Wake Me Up" },
+      { "title": "The Chainsmokers - Closer" },
+      { "title": "Skrillex - Bangarang" },
+      { "title": "Alan Walker - Faded" },
+      { "title": "Zedd - Stay" },
+      { "title": "Major Lazer - Lean On" }
+    ]
+  }
+]

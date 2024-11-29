@@ -6,9 +6,11 @@ const fs = require('fs').promises;
 
 const app = express();
 const server = http.createServer(app);
+app.use(cors());
 const io = new Server({
   cors: {
-    origin: ["http://localhost:3001", "http://localhost:3001/roata"]
+    origin: ["http://93.115.53.18:3000", "http://93.115.53.18:3000/roata", "http://localhost:3000", "http://localhost:3000/roata"],
+    methods: ["GET", "POST"],        
   }
 });
 
@@ -65,9 +67,16 @@ main = async () =>
   {
     console.log("A user connected:", socket.id);
     if (songMap.get(selectedGenre))
-      socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: Array.from(songMap.get(selectedGenre)) });
+      socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: Array.from(songMap.get(selectedGenre)).sort((a, b) => b.votes - a.votes)
+      });
     else
       socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: [] });
+
+    if (stage == 'songs' && selectedSongs !== null)
+    {
+      console.log(selectedSongs.songs.sort((a, b) => b.votes - a.votes));
+      socket.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: selectedSongs.songs.sort((a, b) => b.votes - a.votes) });
+    }
 
 
     socket.on("voteGenre", (genre, callback) =>
@@ -90,7 +99,7 @@ main = async () =>
       }
       callback();
       console.log(selectedSongs);
-      io.sockets.emit("updateSongs", selectedSongs.songs);
+      io.sockets.emit("updateSongs", selectedSongs.songs.sort((a, b) => b.votes - a.votes));
     });
   });
 
@@ -143,7 +152,7 @@ main = async () =>
       }
 
       stage = "songs";
-      io.sockets.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: selectedSongs.songs });
+      io.sockets.emit("stageUpdate", { stage: stage, genre: Array.from(genresAndVotesMap), songs: selectedSongs.songs.sort((a, b) => b.votes - a.votes) });
       console.log(`Stage 2: Voting songs started with songs: ${selectedSongs}`);
       for (let i = 0; i <= votingDuration / 1000; i++)
       {
@@ -172,7 +181,7 @@ main = async () =>
   const PORT = 3000;
   server.listen(PORT, () =>
   {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://93.115.53.18:${PORT}`);
   });
 
 }
